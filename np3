@@ -123,7 +123,7 @@ penalize_nbr_fold=10
 # LOGISTICS
 p_src_code="$(cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)/"
 p_progress="NONE"
-flag_debug="OFF"
+flag_debug="ON"
 seed=747
 
 # SLURM arguments
@@ -379,8 +379,8 @@ then
                     ${p_singularity_img} \
                     ${p_singularity_bindpath}"
     
-    echo "run LASSO.."                    
     job_id_lasso=$(echo $(eval ${cmd_run_lasso}) | awk '{split($0, a, " "); print a[4]}')
+    echo "run LASSO..${job_id_lasso}"
     l_in_name_net+=",lasso"
     l_in_path_net+=",${p_out_dir}net_lasso.tsv"
 fi
@@ -418,8 +418,8 @@ then
                   ${p_singularity_img} \
                   ${p_singularity_bindpath} \
                   ${bart_slurm_ntasks}"
-    echo "run BART.."
     job_id_bart=$(echo $(eval ${cmd_run_bart}) | awk '{split($0, a, " "); print a[4]}')
+    echo "run BART..${job_id_bart}"
     l_in_name_net+=",bart"
     l_in_path_net+=",${p_out_dir}net_bart.tsv"
     p_in_net_bart=${p_out_dir}net_bart.tsv
@@ -460,8 +460,8 @@ then
                  --p_src_code ${p_src_code} \
                  --nbr_job ${nbr_job_pwm}"
                  
-    echo "run PWM.."             
     job_id_pwm=$(echo $(eval ${cmd_run_pwm}) | awk '{split($0, a, " "); print a[4]}')
+    echo "run PWM..${job_id_pwm}"
     l_in_name_net+=",pwm"
     l_in_path_net+=",${p_out_dir}net_pwm.tsv"
 fi
@@ -520,6 +520,6 @@ then
                       --p_singularity_img ${p_singularity_img} \
                       --p_singularity_bindpath ${p_singularity_bindpath}"
      
-    echo "run COMBINE.."  
     job_id_combine=$(echo $(eval ${cmd_run_combine}) | awk '{split($0, a, " "); print a[4]}')
+    echo "run COMBINE..${job_id_combine}"  
 fi

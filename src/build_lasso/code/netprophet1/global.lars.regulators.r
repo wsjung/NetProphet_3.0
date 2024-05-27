@@ -353,7 +353,9 @@ create_lasso_global_shrinkage_parallel = function(df_expr_target
                                                  , nbr_cv_fold
                                                  , p_src_code){
   library("Rmpi")
-  ns <- mpi.universe.size() - 1
+  #ns <- mpi.universe.size() - 1
+  ns <- 10
+  print(ns)
   mpi.spawn.Rslaves(nslaves = ns)
   mpi.bcast.Robj2slave(df_expr_target)
   mpi.bcast.Robj2slave(df_expr_reg)
@@ -371,7 +373,7 @@ create_lasso_global_shrinkage_parallel = function(df_expr_target
   
   
   mpi.close.Rslaves(dellog = FALSE)
-  mpi.quit()
+  # mpi.quit()
   df_lasso_net
 }
 

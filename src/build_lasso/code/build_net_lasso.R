@@ -98,6 +98,7 @@ generate_lasso_net = function(p_in_expr_target
                                                              , p_out_dir
                                                              , nbr_cv_fold
                                                              , p_src_code)
+   # print(df_lasso_net)
    # ------------------------------------------------------------------------------ #
    # |              **** Rerank LASSO With Greenfield method 1 ****               | #
    # ------------------------------------------------------------------------------ #
@@ -157,6 +158,7 @@ generate_lasso_net = function(p_in_expr_target
                                           , df_perturbed
                                           , df_prior
                                           , df_allowed)[[1]]
+     #print(df_lasso_net)
     # ------------------------------------------------------------------------------ #
     # |                          **** LOCAL Shrinkage ****                         | #
     # ------------------------------------------------------------------------------ #
@@ -201,6 +203,7 @@ generate_lasso_net = function(p_in_expr_target
           , FALSE
    )
    # write lasso network
+   # print(df_lasso_net)
    write.table(df_lasso_net
                , file.path(p_out_dir, fname_lasso)
                , row.names=l_in_reg
